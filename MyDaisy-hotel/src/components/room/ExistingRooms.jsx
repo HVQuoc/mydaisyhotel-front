@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { getAllRooms, deleteRoom } from '../utils/ApiFunctions'
-import { Col } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 import RoomFilter from '../common/RoomFilter'
 import RoomPagination from '../common/RoomPagination'
-import {FaEdit, FaEye, FaTrashAlt} from 'react-icons/fa'
-import {Link} from 'react-router-dom'
+import { FaEdit, FaEye, FaTrashAlt, FaPlus } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 const ExistingRooms = () => {
 
@@ -79,9 +79,18 @@ const ExistingRooms = () => {
                         <div className="d-flex justify-content-center mb-3 mt-5">
                             <h2>Existing rooms</h2>
                         </div>
-                        <Col md={6} className="mb-3 mb-md-0">
-                            <RoomFilter data={rooms} setFilteredData={setFilteredRooms}/>
-                        </Col>
+
+                        <Row>
+                            <Col md={6} className="mb-3 mb-md-0">
+                                <RoomFilter data={rooms} setFilteredData={setFilteredRooms} />
+                            </Col>
+                            <Col md={6} className="d-flex justify-content-end">
+                                <Link to="/add-room">
+                                    <FaPlus /> Add room
+                                </Link>
+                            </Col>
+                        </Row>
+
                         <table className="table-border table-hover">
                             <thead>
                                 <tr className="text-center">
@@ -99,8 +108,8 @@ const ExistingRooms = () => {
                                         <td>{room.roomPrice}</td>
                                         <td className="gap-2">
                                             <Link to={`/edit-room/${room.id}`}>
-                                                <span className="btn btn-info btn-sm"><FaEye/></span>
-                                                <span className="btn btn-info btn-sm"><FaEdit/></span>
+                                                <span className="btn btn-info btn-sm"><FaEye /></span>
+                                                <span className="btn btn-info btn-sm"><FaEdit /></span>
                                             </Link>
                                             <button
                                                 className="btn btn-danger btn-sm"

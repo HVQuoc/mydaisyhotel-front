@@ -4,7 +4,7 @@ import RoomTypeSelection from "../common/RoomTypeSelection"
 import { useParams } from "react-router-dom"
 
 const EditRoom = () => {
-    const roomId = useParams()
+    const { roomId } = useParams()
     const [room, setRoom] = useState({
         roomType: "",
         roomPrice: "",
@@ -31,18 +31,20 @@ const EditRoom = () => {
     const handleImageSelection = (e) => {
         const selectedImage = e.target.files[0]
         setRoom({ ...room, photo: selectedImage })
-        setImagePreview(URL.createObjectURL(selectedImage))
+        setImagePreview(selectedImage)
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
+            console.log(room)
             const response = await updateRoom(roomId, room)
             if (response.status == 200) {
+                console.log("Updated room successfully!")
                 setSuccess("Updated room successfully!")
                 const updatedRoom = await getRoomById(roomId)
-                setRoom(updateRoom)
-                setImagePreview(updateRoom.photo)
+                setRoom({...updatedRoom})
+                setImagePreview(updatedRoom.photo)
                 setError("")
             } else {
                 setError("Error updating room")
@@ -57,13 +59,13 @@ const EditRoom = () => {
         const fetchRoom = async () => {
             try {
                 const roomData = await getRoomById(roomId)
-                setRoom(roomData)
+                setRoom({...roomData})
                 setImagePreview(roomData.photo)
             } catch (err) {
                 setError(err.message)
             }
         }
-        
+
         fetchRoom()
     }, [roomId])
 
@@ -77,12 +79,14 @@ const EditRoom = () => {
                         <form onSubmit={handleSubmit}>
                             <div className="mb-3">
                                 <label htmlFor="roomType" className="form-label">Room type</label>
-                                <div>
-                                    <RoomTypeSelection
-                                        handleRoomInputChange={handleRoomInputChange}
-                                        newRoom={newRoom}
-                                    />
-                                </div>
+                                <input
+                                    required
+                                    className="form-control"
+                                    id="roomType"
+                                    name="roomType"
+                                    value={room.roomType}
+                                    onChange={handleRoomInputChange}
+                                />
                             </div>
 
                             <div className="mb-3">
@@ -92,7 +96,7 @@ const EditRoom = () => {
                                     className="form-control"
                                     id="roomPrice"
                                     name="roomPrice"
-                                    value={newRoom.roomPrice}
+                                    value={room.roomPrice}
                                     onChange={handleRoomInputChange}
                                 />
                             </div>
@@ -100,26 +104,28 @@ const EditRoom = () => {
                             <div className="mb-3">
                                 <label htmlFor="photo" className="form-label">Photo</label>
                                 <input
-                                    required
                                     className="form-control"
                                     id="photo"
                                     type="file"
                                     onChange={handleImageSelection}
                                 />
+
                                 {imagePreview && (
-                                    <img
-                                        src={imagePreview}
-                                        alt="room image preview"
-                                        style={{ maxWidth: "400px", maxHeight: "400px" }}
-                                        className="mb-3"
-                                    />
+                                    <div className="my-4">
+                                        <img
+                                            src={`data:image/jpeg;base64,${imagePreview}`}
+                                            alt="room image preview"
+                                            style={{ maxWidth: "400px", maxHeight: "400px" }}
+                                            className="mb-3"
+                                        />
+                                    </div>
                                 )}
                             </div>
                             <div className="d-grid d-md-flex mt-2">
                                 <button
                                     className="btn btn-outline-primary ml-5"
                                 >
-                                    Save room
+                                    Save change
                                 </button>
                             </div>
                         </form>
