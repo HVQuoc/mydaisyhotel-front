@@ -46,7 +46,7 @@ const NavBar = () => {
                         </li>
 
                         <li className="nav-item dropdown">
-                            <a
+                            <button
                                 className={`btn dropdown-toggle ${showAccount ? "show" : ""}`}
                                 type="button"
                                 data-bs-target="#dropdownAccount"
@@ -55,7 +55,7 @@ const NavBar = () => {
                                 onClick={handleClickShowAccount}
                             >
                                 Account
-                            </a>
+                            </button>
                             <ul className={`dropdown-menu ${showAccount ? "show" : ""}`}
                                 aria-labelledby="dropdownAccount"
                             >
@@ -65,7 +65,7 @@ const NavBar = () => {
                                 <li className="dropdown-item">
                                     <Link to={"/profile"}>Profile</Link>
                                 </li>
-                                <div class="dropdown-divider"></div>
+                                <div className="dropdown-divider"></div>
                                 <li className="dropdown-item">
                                     <Link to={"/logout"}>Logout</Link>
                                 </li>
