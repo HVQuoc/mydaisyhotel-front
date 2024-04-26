@@ -62,3 +62,47 @@ export const getRoomById = async (roomId) => {
         throw new Error(`Cannot find room with id ${roomId}`)
     }
 }
+
+export const bookRoom = async (roomId, booking) => {
+    try {
+        const response = await api.post(`/bookings/room/${roomId}/booking`, booking)
+        return response.data
+    } catch (err) {
+        if (err.response && err.response.data) {
+            throw new Error(err.response.data)
+        } else {
+            throw new Error("Error booking room: ", err.message)
+        }
+    }
+}
+
+export const getAllBookings = async () => {
+    try {
+        const response = await api.get("bookings/all-bookings");
+        return response.data
+    } catch (err) {
+        throw new Error("Error fetching all bookings.")
+    }
+}
+
+export const getBookingByConfirmationCode = async (confirmationCode) => {
+    try {
+        const result = await api.get(`/bookings/confirmation/${confirmationCode}`)
+        return result.data
+    } catch (err) {
+        if (err.response && err.response.data) {
+            throw new Error(err.response.data)
+        } else {
+            throw new Error("Error booking room by confirmation code: ", err.message)
+        }
+    }
+}
+
+export const  cancelBooking = async (bookingId) => {
+    try {
+        const result = await api.delete(`/bookings/booking/${bookingId}/delete`)
+        return result.data
+    } catch (err) {
+        throw new Error("Error canceling booking: ", err.message)
+    }
+}
