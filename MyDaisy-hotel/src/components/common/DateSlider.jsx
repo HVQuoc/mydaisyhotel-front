@@ -1,0 +1,38 @@
+import { useState } from 'react'
+import "react-date-range/dist/styles.css"
+import "react-date-range/dist/theme/default.css"
+import { DateRangePicker } from "react-date-range"
+
+const DateSlider = ({ onDateChange, onFilterChange }) => {
+    const [dateRange, setDateRange] = useState({
+        startDate: undefined,
+        endDate: undefined,
+        key: "selection"
+    })
+
+    const handleSelect = (range) => {
+        setDateRange(range.selection)
+        onDateChange(range.selection.startDate, range.selection.endDate)
+        onFilterChange(range.selection.startDate, range.selection.endDate)
+    }
+
+    const clearFilter = () => {
+        setDateRange({
+            startDate: undefined,
+            endDate: undefined,
+            key: "selection"
+        })
+        onDateChange(null, null)
+        onFilterChange(null, null)
+    }
+
+    return (
+        <>
+            <h5>Filter booking by date:</h5>
+            <button className="btn btn-secondary" onClick={clearFilter}>Clear filter</button>
+            <DateRangePicker ranges={[dateRange]} onChange={handleSelect} className="mb-4" />
+        </>
+    )
+}
+
+export default DateSlider

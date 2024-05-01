@@ -90,13 +90,22 @@ body {
   height: 50vh;
 }
 
-.header {
+/* .header {
   position: relative;
   height: 150px;
   background-size: cover;
   background-image: url("./assets/images/.parallax.jpg");
   background-position: center center;
+} */
+
+.header {
+  position: relative;
+  height: 150px;
+  background-size: cover;
+ /*  background-image: url("./assets/images/parallax.jpg"); */
+  background-position: center center;
 }
+
 .header-title {
   color: #fff;
   font-size: 4rem;

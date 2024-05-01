@@ -17,8 +17,8 @@ const BookingForm = () => {
         guestEmail: "",
         checkInDate: "",
         checkOutDate: "",
-        numberOfAdults: "",
-        numberOfChildren: "",
+        numOfAdults: "",
+        numOfChildren: "",
     })
 
     const [roomInfo, setRoomInfo] = useState({
@@ -51,8 +51,8 @@ const BookingForm = () => {
     }
 
     const isGuestCountValid = () => {
-        const adultsCount = parseInt(booking.numberOfAdults)
-        const childrenCount = parseInt(booking.numberOfChildren)
+        const adultsCount = parseInt(booking.numOfAdults)
+        const childrenCount = parseInt(booking.numOfChildren)
         const totalCount = adultsCount + childrenCount
         return totalCount > 0 && adultsCount > 0
     }
@@ -83,8 +83,9 @@ const BookingForm = () => {
             setIsSubmitted(true)
             navigate("/booking-success", { state: { message: confirmationCode } })
         } catch (error) {
-            setErrorMessage(error.message)
-            navigate("/booking-success", { state: { error: errorMessage } })
+            const errMessage = error.message
+            console.log(errMessage)
+            navigate("/booking-success", { state: { error: errMessage } })
         }
     }
 
@@ -165,13 +166,13 @@ const BookingForm = () => {
                                 <legend>Number of guest</legend>
                                 <div className="row">
                                     <div className="col-6">
-                                        <Form.Label htmlFor="numberOfAdults">Adult:</Form.Label>
+                                        <Form.Label htmlFor="numOfAdults">Adult:</Form.Label>
                                         <FormControl
                                             required
                                             type="number"
-                                            id="numberOfAdults"
-                                            name="numberOfAdults"
-                                            value={booking.numberOfAdults}
+                                            id="numOfAdults"
+                                            name="numOfAdults"
+                                            value={booking.numOfAdults}
                                             placeholder="0"
                                             min={1}
                                             onChange={handleBookingInputChange}
@@ -180,14 +181,15 @@ const BookingForm = () => {
                                     </div>
 
                                     <div className="col-6">
-                                        <Form.Label htmlFor="numberOfChildren">Children:</Form.Label>
+                                        <Form.Label htmlFor="numOfChildren">Children:</Form.Label>
                                         <FormControl
                                             required
                                             type="number"
-                                            id="numberOfChildren"
-                                            name="numberOfChildren"
-                                            value={booking.numberOfChildren}
+                                            id="numOfChildren"
+                                            name="numOfChildren"
+                                            value={booking.numOfChildren}
                                             placeholder="0"
+                                            min={0}
                                             onChange={handleBookingInputChange}
                                         />
                                     </div>
@@ -202,7 +204,7 @@ const BookingForm = () => {
                     </div>
                 </div>
                 <div className="col-md-6">
-                    {isSubmitted && (
+                    {isSubmitted && isValidated && (
                         <BookingSummary
                             booking={booking}
                             payment={calculatePayment()}

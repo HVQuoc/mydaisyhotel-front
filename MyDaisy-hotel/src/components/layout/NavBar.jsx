@@ -9,9 +9,9 @@ const NavBar = () => {
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary px-5 shadow mt-5 sticky-top">
             <div className="container-fluid">
-                <Link to="/">
-                    <span className="hotel-color">My Daisy Hotel</span>
-                </Link>
+                <NavLink className="nav-link" to="/">
+                    <span className="hotel-color"><strong>My Daisy Hotel</strong></span>
+                </NavLink>
                 <button
                     className="navbar-toggler"
                     type="button"

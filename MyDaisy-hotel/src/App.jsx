@@ -10,6 +10,8 @@ import Footer from "./components/layout/Footer"
 import RoomListing from "./components/room/RoomListing"
 import CheckOut from "./components/bookings/CheckOut"
 import BookingSuccess from "./components/bookings/BookingSuccess"
+import Bookings from "./components/bookings/Bookings"
+import Admin from "./components/admin/Admin"
 
 function App() {
 
@@ -21,9 +23,11 @@ function App() {
         <Route path="/existing-rooms" element={<ExistingRoom />} />
         <Route path="/edit-room/:roomId" element={<EditRoom />} />
         <Route path="/new-room" element={<AddRoom />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/book-room/:roomId" element={<CheckOut />} />
         <Route path="/booking-success" element={<BookingSuccess />} />
         <Route path="/browse-all-rooms" element={<RoomListing />} />
+        <Route path="/existing-bookings" element={<Bookings />} />
       </Routes>
       <Footer />  
     </>

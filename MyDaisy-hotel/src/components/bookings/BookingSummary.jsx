@@ -36,9 +36,9 @@ const BookingSummary = ({ booking, payment, isFormValid, onConfirm }) => {
             <p>Number of days: <strong>{numOfDays}</strong></p>
             <div>
                 <h5>Number of guests</h5>
-                <strong>Adults: {booking.numberOfAdults}</strong>
+                <strong>Adults: {booking.numOfAdults}</strong>
                 <br />
-                <strong>Children: {booking.numberOfChildren}</strong>
+                <strong>Children: {booking.numOfChildren}</strong>
             </div>
             <hr />
             {payment > 0 ? (
@@ -64,7 +64,7 @@ const BookingSummary = ({ booking, payment, isFormValid, onConfirm }) => {
                         </Button>
                     ) : isBookingConfirmed ? (<p>Loading...</p>) : null}
                 </>) : (
-                <p className="text-danger">Payment invalid. Check-out date must be after check-in date</p>)
+                <p className="text-danger">Payment invalid. Please fill in the form with the requirement.</p>)
             }
         </div>
     )
