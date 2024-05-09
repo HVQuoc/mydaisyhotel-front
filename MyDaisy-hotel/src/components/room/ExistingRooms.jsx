@@ -85,7 +85,7 @@ const ExistingRooms = () => {
                                 <RoomFilter data={rooms} setFilteredData={setFilteredRooms} />
                             </Col>
                             <Col md={6} className="d-flex justify-content-end">
-                                <Link to="/add-room">
+                                <Link to="/new-room">
                                     <FaPlus /> Add room
                                 </Link>
                             </Col>

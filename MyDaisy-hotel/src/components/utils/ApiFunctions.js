@@ -98,11 +98,19 @@ export const getBookingByConfirmationCode = async (confirmationCode) => {
     }
 }
 
-export const  cancelBooking = async (bookingId) => {
+export const cancelBooking = async (bookingId) => {
     try {
         const result = await api.delete(`/bookings/booking/${bookingId}/delete`)
         return result.data
     } catch (err) {
         throw new Error("Error canceling booking: ", err.message)
     }
+}
+
+export async function getAvailableRooms(checkInDate, checkOutDate, roomType) {
+	const result = await api.get(
+		`rooms/available-rooms?checkInDate=${checkInDate}
+		&checkOutDate=${checkOutDate}&roomType=${roomType}`
+	)
+	return result
 }

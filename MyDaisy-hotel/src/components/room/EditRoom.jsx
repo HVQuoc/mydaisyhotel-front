@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { addRoom, getRoomById, updateRoom } from "../utils/ApiFunctions"
-import RoomTypeSelection from "../common/RoomTypeSelection"
+import RoomTypeSelector from "../common/RoomTypeSelector"
 import { useParams } from "react-router-dom"
 
 const EditRoom = () => {
