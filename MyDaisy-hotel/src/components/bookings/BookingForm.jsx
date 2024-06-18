@@ -12,9 +12,10 @@ const BookingForm = () => {
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
     const [roomPrice, setRoomPrice] = useState(0)
+    const currentUser = localStorage.getItem("userId")
     const [booking, setBooking] = useState({
         guestFullName: "",
-        guestEmail: "",
+        guestEmail: currentUser,
         checkInDate: "",
         checkOutDate: "",
         numOfAdults: "",
@@ -53,6 +54,7 @@ const BookingForm = () => {
     const isGuestCountValid = () => {
         const adultsCount = parseInt(booking.numOfAdults)
         const childrenCount = parseInt(booking.numOfChildren)
+        console.log("number of children", childrenCount)
         const totalCount = adultsCount + childrenCount
         return totalCount > 0 && adultsCount > 0
     }

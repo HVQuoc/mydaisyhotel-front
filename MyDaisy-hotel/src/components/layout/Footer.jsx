@@ -2,7 +2,7 @@ import React from 'react'
 import { Col, Row, Container} from 'react-bootstrap'
 
 const Footer = () => {
-    const today = new Date()
+  const today = new Date()
   return (
     <footer className="bg-dark text-light py-3 footer mt-lg-5">
       <Container>

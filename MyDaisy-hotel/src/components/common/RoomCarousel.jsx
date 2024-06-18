@@ -27,7 +27,7 @@ const RoomCarousel = () => {
     }
     return (
         <section className="bg-light my-5 shadow">
-            <Link to={"/browse-all-rooms"}>Browse all rooms</Link>
+            <Link className="p-2 m-2 text-success link-hover" to={"/browse-all-rooms"}>Browse all rooms</Link>
             <Container>
                 <Carousel indicators={false}>
                     {/* <Carousel.Item> item 1, </Carousel.Item>

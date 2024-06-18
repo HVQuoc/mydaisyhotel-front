@@ -1,12 +1,11 @@
 import React from 'react'
 
-const Header = ({title}) => {
+const Header = ({ title }) => {
   return (
-    <header className="header">
-        <div className="overlay"></div>
-        <div className="container">
-            <h1 className="header-title text-center">{title}</h1>
-        </div>
+    <header className="header p-2">
+      <div className="overlay">
+          <h1 className="header-title text-center m-0 h-100">{title}</h1>
+      </div>
     </header>
   )
 }
