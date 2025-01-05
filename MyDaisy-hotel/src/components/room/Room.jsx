@@ -45,10 +45,10 @@ const Room = () => {
     return (
         <Container>
             <Row>
-                <Col md={6} className="mb-3 mb-md-0">
+                <Col md={8} className="mb-3 mb-md-0">
                     <RoomFilter data={data} setFilteredData={setFilterdData} />
                 </Col>
-                <Col md={6} className="d-flex justify-content-end align-items-end">
+                <Col md={4} className="d-flex justify-content-end align-items-end">
                     <RoomPagination
                         currentPage={currentPage}
                         totalPages={totalPage}

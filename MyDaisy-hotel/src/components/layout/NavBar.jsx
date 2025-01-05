@@ -13,7 +13,7 @@ const NavBar = () => {
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary px-5 shadow sticky-top">
-            <div className="container-fluid">
+            <div className="container">
                 <NavLink className="nav-link" to="/">
                     <span className="hotel-color"><strong>My Daisy Hotel</strong></span>
                 </NavLink>

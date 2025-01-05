@@ -6,7 +6,7 @@ import RoomPagination from '../common/RoomPagination'
 import { FaEdit, FaEye, FaTrashAlt, FaPlus } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
-const ExistingRooms = () => {
+const   ExistingRooms = () => {
 
     // this is all the rooms of this component
     const [rooms, setRooms] = useState([])
